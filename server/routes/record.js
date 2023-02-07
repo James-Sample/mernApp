@@ -1,6 +1,4 @@
-const { response } = require("express");
 const express = require("express");
-const { MongoErrorLabel } = require("mongodb");
 
 const recordRoutes = express.Router();
 
@@ -24,8 +22,8 @@ recordRoutes.route("/record").get(function (req, res) {
 
 // this section will help you get a single record by id
 recordRoutes.route("/record/:id").get(function (req, res) {
-  let b_connect = dbo.getDb();
-  let myquery = { _if: ObjectId(req.params.id) };
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("records").findOne(myquery, function (err, result) {
     if (err) throw err;
     res.json(result);

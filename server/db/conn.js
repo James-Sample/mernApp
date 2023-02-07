@@ -9,6 +9,7 @@ var _db;
 
 module.exports = {
   connectToServer: function (callback) {
+    console.log(callback);
     client.connect(function (err, db) {
       if (db) {
         _db = db.db("employees");
